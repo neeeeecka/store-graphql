@@ -67,7 +67,6 @@ class StoreListResolver implements ResolverInterface
                 [
                     'name' => $store->getName(),
                     'is_active' => $store->getIsActive(),
-                    'website_id' => $store->getWebsiteId(),
                 ]
             );
         }, $stores);
