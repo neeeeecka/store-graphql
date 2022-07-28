@@ -58,7 +58,7 @@ class StoreListResolver implements ResolverInterface
     )
     {
         $stores = $this->storeManager->getStores();
-        $website_id = $this->storeManager->getWebsite()->getId();
+        $store_group_code = $this->storeManager->getGroup()->getCode();
 
         $mappedStores = array_map(function ($store) {
             /** @var $store StoreInterface */
@@ -67,15 +67,22 @@ class StoreListResolver implements ResolverInterface
                 [
                     'name' => $store->getName(),
                     'is_active' => $store->getIsActive(),
-                    'website_id' => $store->getWebsiteId()
+                    'website_id' => $store->getWebsiteId(),
                 ]
             );
         }, $stores);
 
-        $filtered = array_filter($mappedStores, function ($store) use ($website_id) {
-            return $store["website_id"] === $website_id;
+        $filtered = array_filter($mappedStores, function ($store) use ($store_group_code) {
+            if (array_key_exists('store_group_code', $store)) {
+                return $store['store_group_code'] === $store_group_code;
+            }
+            return false;
         });
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         return $filtered;
     }
 }
