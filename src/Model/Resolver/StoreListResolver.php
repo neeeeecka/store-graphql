@@ -78,11 +78,7 @@ class StoreListResolver implements ResolverInterface
             }
             return false;
         });
-<<<<<<< Updated upstream
-
-=======
         
->>>>>>> Stashed changes
         return $filtered;
     }
 }
